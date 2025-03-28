@@ -4,3 +4,4 @@
 - Add mouse event
 - Add keyboard events
 - Add form event!
+- Add focus event

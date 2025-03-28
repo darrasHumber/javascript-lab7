@@ -7,6 +7,9 @@ const keyboardMessage = document.getElementById("keyboard-message");
 const demoForm = document.getElementById("demo-form");
 const formMessage = document.getElementById("form-message");
 
+const focusInput = document.getElementById("focus-input");
+const focusMessage = document.getElementById("focus-message");
+
 // Mouseover event
 hoverButton.addEventListener("mouseover", () => {
   mouseMessage.textContent = "Mouse is over the button!";
@@ -129,3 +132,35 @@ function simulateSubmission(name, email) {
     formMessage.classList.add("form-success");
   }, 1500);
 }
+
+// Focus event - when element gains focus
+focusInput.addEventListener("focus", () => {
+  focusMessage.textContent = "Input field is now focused";
+  focusMessage.style.color = "#4361ee";
+  focusInput.style.borderColor = "#4361ee";
+  focusInput.style.backgroundColor = "#f8f9fa";
+});
+
+// Blur event - when element loses focus
+focusInput.addEventListener("blur", () => {
+  focusMessage.textContent = "Input field lost focus";
+  focusMessage.style.color = "#6c757d";
+  focusInput.style.borderColor = "#ced4da";
+  focusInput.style.backgroundColor = "white";
+
+  // Validate on blur
+  if (focusInput.value.trim() === "") {
+    focusInput.style.borderColor = "#f72585";
+    focusMessage.textContent = "This field cannot be empty!";
+    focusMessage.style.color = "#f72585";
+  }
+});
+
+// Bonus: Input validation while typing
+focusInput.addEventListener("input", () => {
+  if (focusInput.value.trim() !== "") {
+    focusInput.style.borderColor = "#4361ee";
+    focusMessage.textContent = "Typing...";
+    focusMessage.style.color = "#4361ee";
+  }
+});
