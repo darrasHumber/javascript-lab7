@@ -4,6 +4,9 @@ const mouseMessage = document.getElementById("mouse-message");
 const keyboardInput = document.getElementById("keyboard-input");
 const keyboardMessage = document.getElementById("keyboard-message");
 
+const demoForm = document.getElementById("demo-form");
+const formMessage = document.getElementById("form-message");
+
 // Mouseover event
 hoverButton.addEventListener("mouseover", () => {
   mouseMessage.textContent = "Mouse is over the button!";
@@ -43,3 +46,86 @@ keyboardInput.addEventListener("input", (event) => {
     keyboardInput.style.borderColor = "#4361ee";
   }
 });
+
+// Form submission handler
+demoForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  // Get form values
+  const formData = new FormData(demoForm);
+  const name = formData.get("name");
+  const email = formData.get("email");
+
+  // Validate inputs
+  if (!name || !email) {
+    formMessage.textContent = "Please fill in all fields!";
+    formMessage.style.color = "#f72585";
+    return;
+  }
+
+  // Validate email format
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    formMessage.textContent = "Please enter a valid email address!";
+    formMessage.style.color = "#f72585";
+    return;
+  }
+
+  // Success message
+  formMessage.innerHTML = `
+        <strong>Form submitted successfully!</strong><br>
+        Name: ${name}<br>
+        Email: ${email}
+    `;
+  formMessage.style.color = "#4361ee";
+
+  // Add visual feedback
+  formMessage.classList.add("form-success");
+  demoForm.reset();
+
+  // Simulate API call
+  simulateSubmission(name, email);
+});
+
+// Form reset handler
+demoForm.addEventListener("reset", () => {
+  formMessage.textContent = "Form has been reset";
+  formMessage.style.color = "#6c757d";
+  formMessage.classList.remove("form-success");
+});
+
+// Input validation on blur
+demoForm
+  .querySelector('input[name="name"]')
+  .addEventListener("blur", (event) => {
+    if (!event.target.value) {
+      event.target.classList.add("input-error");
+    } else {
+      event.target.classList.remove("input-error");
+    }
+  });
+
+demoForm
+  .querySelector('input[name="email"]')
+  .addEventListener("blur", (event) => {
+    const email = event.target.value;
+    if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+      event.target.classList.add("input-error");
+    } else {
+      event.target.classList.remove("input-error");
+    }
+  });
+
+// Simulate form submission to an API
+function simulateSubmission(name, email) {
+  formMessage.textContent = "Submitting form data...";
+
+  // Simulate network request
+  setTimeout(() => {
+    formMessage.innerHTML = `
+            <strong>Submission complete!</strong><br>
+            Thank you, ${name}! We've received your details.<br>
+            A confirmation has been sent to ${email}.
+        `;
+    formMessage.classList.add("form-success");
+  }, 1500);
+}
