@@ -1,1 +1,3 @@
-# javascript-lab7
+# JavaScript Lab7
+
+- Create static page

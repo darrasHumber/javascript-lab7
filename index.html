@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Event Handling Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>JavaScript Event Handling Lab</h1>
+
+      <!-- Mouse Events Section -->
+      <section class="event-section">
+        <h2>Mouse Events</h2>
+        <button id="hover-button">Hover Over Me</button>
+        <p id="mouse-message">Hover over the button to see a message</p>
+      </section>
+
+      <!-- Keyboard Events Section -->
+      <section class="event-section">
+        <h2>Keyboard Events</h2>
+        <input
+          type="text"
+          id="keyboard-input"
+          placeholder="Type something..."
+        />
+        <p id="keyboard-message">Last key pressed:</p>
+      </section>
+
+      <!-- Form Events Section -->
+      <section class="event-section">
+        <h2>Form Events</h2>
+        <form id="demo-form">
+          <input type="text" placeholder="Enter your name" required />
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit">Submit</button>
+        </form>
+        <p id="form-message"></p>
+      </section>
+
+      <!-- Focus Events Section -->
+      <section class="event-section">
+        <h2>Focus Events</h2>
+        <input
+          type="text"
+          id="focus-input"
+          placeholder="Click in and out of this field"
+        />
+        <p id="focus-message">Focus status:</p>
+      </section>
+
+      <!-- Event Delegation Section -->
+      <section class="event-section">
+        <h2>Event Delegation</h2>
+        <div id="button-container">
+          <button class="action-btn">Button 1</button>
+          <button class="action-btn">Button 2</button>
+          <button class="action-btn">Button 3</button>
+          <button class="action-btn">Button 4</button>
+        </div>
+        <p id="delegation-message">Click any button above</p>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
