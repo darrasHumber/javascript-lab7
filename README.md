@@ -2,3 +2,4 @@
 
 - Create static page
 - Add mouse event
+- Add keyboard events
