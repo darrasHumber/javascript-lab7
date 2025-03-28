@@ -10,6 +10,9 @@ const formMessage = document.getElementById("form-message");
 const focusInput = document.getElementById("focus-input");
 const focusMessage = document.getElementById("focus-message");
 
+const buttonContainer = document.getElementById("button-container");
+const delegationMessage = document.getElementById("delegation-message");
+
 // Mouseover event
 hoverButton.addEventListener("mouseover", () => {
   mouseMessage.textContent = "Mouse is over the button!";
@@ -163,4 +166,19 @@ focusInput.addEventListener("input", () => {
     focusMessage.textContent = "Typing...";
     focusMessage.style.color = "#4361ee";
   }
+});
+
+// Event delegation - single listener for all buttons
+buttonContainer.addEventListener("click", (event) => {
+  const button = event.target.closest("button");
+  if (!button) return;
+
+  const action = button.dataset.action;
+  const buttonText = button.textContent;
+
+  delegationMessage.textContent = `${buttonText} button clicked (Action: ${action})`;
+  delegationMessage.style.color = "#4361ee";
+
+  button.classList.add("button-active");
+  setTimeout(() => button.classList.remove("button-active"), 200);
 });
